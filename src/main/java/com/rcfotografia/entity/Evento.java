@@ -37,9 +37,9 @@ public class Evento extends BaseEntity {
 	private EventoTipo tipo;
 	
 	@Column(precision = 9, scale = 2)
-	private BigDecimal valor;
+	private BigDecimal valorCobrado;
 	
 	@Embedded
-	private Periodo dataPrevisto;
+	private Periodo dataPrevista;
 	
 }
