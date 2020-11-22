@@ -1,4 +1,4 @@
-package com.rcfotografia.dominio.redesocial;
+package com.rcfotografia.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -12,21 +12,21 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.rcfotografia.entity.RedeSocial;
-import com.rcfotografia.repository.RedeSocialRepository;
+import com.rcfotografia.entity.EventoTipo;
+import com.rcfotografia.repository.EventoTipoRepository;
 
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
 @DataJpaTest
-class RedeSocialRepositoryTest {
+class TipoEventoRepositoryTest {
 	
 	@Autowired
-	private RedeSocialRepository repository;
+	private EventoTipoRepository repository;
 	
 	@Test
 	@DisplayName("Deve retornar que existe")
 	void existsByNomeAndIdNot() {
-		RedeSocial entity = RedeSocial.builder().id(1).nome("Descrição").build();
+		EventoTipo entity = EventoTipo.builder().id(1).nome("Descrição").build();
 		repository.save(entity);
 		
 		boolean exists = repository.existsByNomeAndIdNot("Descrição", 2);
@@ -37,7 +37,7 @@ class RedeSocialRepositoryTest {
 	@Test
 	@DisplayName("Deve retornar que não existe, pois está sendo utilizado o mesmo ID")
 	void existsByNomeAndIdNotSameId() {
-		RedeSocial entity = RedeSocial.builder().id(1).nome("Descrição").build();
+		EventoTipo entity = EventoTipo.builder().id(1).nome("Descrição").build();
 		int id = repository.save(entity).getId();
 		
 		boolean exists = repository.existsByNomeAndIdNot("Descrição", id);
@@ -46,10 +46,10 @@ class RedeSocialRepositoryTest {
 	}
 	
 	@Test
-	@DisplayName("Deve gera um ID")
+	@DisplayName("Deve gerar um ID")
 	void uniqueNome() {
-		RedeSocial entity = RedeSocial.builder().nome("Descrição").build();
-		RedeSocial saved = repository.save(entity);
+		EventoTipo entity = EventoTipo.builder().nome("Descrição").build();
+		EventoTipo saved = repository.save(entity);
 		
 		assertThat(saved).isNotNull();
 		assertThat(saved.getId()).isNotNull().isPositive();

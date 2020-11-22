@@ -30,7 +30,7 @@ public class Evento extends BaseEntity {
 	@Id
 	@EqualsAndHashCode.Include
 	@GeneratedValue
-	private Long id;
+	private Integer id;
 	
 	@JoinColumn
 	@ManyToOne(fetch = FetchType.LAZY)

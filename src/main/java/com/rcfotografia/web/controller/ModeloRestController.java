@@ -1,17 +1,11 @@
 package com.rcfotografia.web.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/modelos")
-public class ModeloRestController implements BaseRestController {
+public class ModeloRestController extends BaseRestController {
 	private final ModeloService service;
 	private final ModelMapper modelMapper;
 	
@@ -58,21 +52,6 @@ public class ModeloRestController implements BaseRestController {
 	@GetMapping("/{modeloId}")	
 	public ResponseEntity<ModeloDto> findById(@PathVariable Integer modeloId) {
 		return new ResponseEntity<>(modelMapper.map(service.findById(modeloId), ModeloDto.class), HttpStatus.OK);
-	}
-	
-	
-	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public Map<String, String> handleValidationExceptions(
-	  MethodArgumentNotValidException ex) {
-	    Map<String, String> errors = new HashMap<>();
-	    ex.getBindingResult().getAllErrors().forEach((error) -> {
-	        String fieldName = ((FieldError) error).getField();
-	        String errorMessage = error.getDefaultMessage();
-	        errors.put(fieldName, errorMessage);
-	    });
-	    
-	    return errors;
 	}
 	
 }

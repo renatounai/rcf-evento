@@ -1,4 +1,4 @@
-package com.rcfotografia.dominio.evento;
+package com.rcfotografia.web;
 
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

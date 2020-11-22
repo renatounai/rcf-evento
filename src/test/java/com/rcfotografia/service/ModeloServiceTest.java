@@ -1,4 +1,4 @@
-package com.rcfotografia.dominio.modelo;
+package com.rcfotografia.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;

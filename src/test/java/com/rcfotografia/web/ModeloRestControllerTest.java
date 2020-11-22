@@ -1,4 +1,4 @@
-package com.rcfotografia.dominio.modelo;
+package com.rcfotografia.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.times;
